@@ -1,0 +1,18 @@
+<template name="messages2">
+  <div class="row">
+    {{#each messages}}
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="{{image}}" alt="...">
+          <div class="caption">
+            <h3>제목</h3>
+            <p>{{message}}</p>
+            <p><a href="#" class="btn btn-primary" role="button" id="testButton">Test</a>
+              <a id="removeTwit" href="#" class="btn btn-danger" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+</template>
