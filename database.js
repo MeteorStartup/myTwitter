@@ -1,0 +1,1 @@
+twits = new Mongo.Collection('twits');
