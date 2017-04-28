@@ -1,0 +1,12 @@
+<template name="messages">
+  <table>
+    {{#each messages}}
+      <tr>
+        <td>{{email}}</td>
+        <td>{{message}}</td>
+        <td><img src="{{image}}" alt="" style="width: 100px;"></td>
+      </tr>
+    {{/each}}
+  </table>
+
+</template>
