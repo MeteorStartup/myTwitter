@@ -21,36 +21,46 @@ Template.jumbotron.events({
     if (!(message.length > 0)) {
       return;
     }
+    if ($('#twitImage').val().length > 0) {
+      try {
 
-    try {
+        var file = $('#twitImage')[0].files[0];
+        var reader = new FileReader();
 
-      var file = $('#twitImage')[0].files[0];
-      var reader = new FileReader();
+        reader.onload = function (event) {
+          var image = event.target.result;
+          var tmp = {
+            createdAt: new Date(),
+            // email: email,
+            message: message,
+            image: image,
+            user: Meteor.user()
+          };
 
-      reader.onload = function (event) {
-        var image = event.target.result;
-        var tmp = {
-          createdAt: new Date(),
-          // email: email,
-          message: message,
-          image: image
+          dd = twits.insert(tmp, function (err) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            $('#message').val('');
+            $('#twitImage').val('');
+          });
+          console.log(dd)
         };
-
-        twits.insert(tmp, function (err) {
-          if (err) {
-            return;
-          }
-          $('#message').val('');
-          $('#twitImage').val('');
-        });
-      };
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      }
+      catch(err) {
+        if(err) {
+          console.log(err);
+        }
+      }
     }
-    catch(err) {
+    else {
       var tmp = {
         createdAt: new Date(),
         // email: email,
         message: message,
+        user: Meteor.user()
       };
 
       twits.insert(tmp, function (err) {
@@ -61,6 +71,7 @@ Template.jumbotron.events({
         $('#twitImage').val('');
       });
     }
+
 
 
 
